@@ -5,6 +5,7 @@
 | **Command** | **Description** |
 |---|---|
 | tb_enabled \<num true> | Enables/Disables the addon. |
+| tb_match_time_limit \<num seconds> | Length of the match in seconds. |
 | tb_start_match | Starts the match. |
 | tb_end_match | Forces the match to stop and reset, if one is ongoing. |
 | tb_create_team \<string name> [num red] [num green] [num blue] | Creates a team with the given name (use quotation marks) and color (defaults to a random color) |
