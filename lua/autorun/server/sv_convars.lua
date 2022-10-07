@@ -1,0 +1,6 @@
+CreateConVar("tb_enabled", 1, FCVAR_ARCHIVE, "Enables/Disables the addon.", 0, 1)
+CreateConVar("tb_player_lives", 1, FCVAR_NONE, "The number of lives each player has per match", 0)
+CreateConVar("tb_kill_points", 25, FCVAR_NONE, "How many points to reward a player for a kill", 0)
+CreateConVar("tb_teamkill_penalty", 25, FCVAR_NONE, "How many points to take away from a player for team-killing", 0)
+CreateConVar("tb_win_amount", 250, FCVAR_NONE, "How many points a team needs to win the match.", 0)
+CreateConVar("tb_match_time_limit", 600, FCVAR_NONE, "How long the match should last in seconds.", 0)
