@@ -18,6 +18,11 @@
 | tb_teamkill_penalty \<num points=25> | Sets the number of points deducted from a player for teamkilling. (0 for none, or negative to reward) |
 | tb_capture_speed_multiplier \<num mul=1.5> | The capture point capture speed multiplier when multiple people of the same team are on one point. |
 | tb_airdrop_capture_radius <num radius=128> | Sets the radius where air dropped crates can be captured. |
+___
+ 
+## Edit Mode Commands
+| **Command** | **Description** |
+|---|---|
 | tb_edit \<num true> | Enter or exit edit mode by passing 1 or 0 respectively. Superadmin only. This needs to be enabled to do the below commands. |
 | tb_save \<string name> | Saves a map-specific config with the name specified. |
 | tb_load \<string name> | Loads a map-specific config with the name specified, if it exists. |
