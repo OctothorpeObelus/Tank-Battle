@@ -13,7 +13,7 @@
 | tb_join_team \<string name> | Joins the team with the given name, if it exists. |
 | tb_leave_team \<string name> | Leaves the team with the given name, if it exists. |
 | tb_player_lives \<num lives=1> | Number of lives that a player gets before being considered dead. (Cannot contribute to team score) |
-| tb_win_amount \<num points=250> | Sets the number of points needed for a team to win the match. |
+| tb_win_amount \<num points=250> | Sets the number of points needed for a team to win the match. (Set to 0 if you want a match that is purely time restrained and the team with the most points at the end wins) |
 | tb_kill_points \<num points=25> | Sets the number of points given to a player for killing an enemy. |
 | tb_teamkill_penalty \<num points=25> | Sets the number of points deducted from a player for teamkilling. (0 for none, or negative to reward) |
 | tb_capture_speed_multiplier \<num mul=1.5> | The capture point capture speed multiplier when multiple people of the same team are on one point. |
