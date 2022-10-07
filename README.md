@@ -5,11 +5,14 @@
 | **Command** | **Description** |
 |---|---|
 | tb_enabled \<num true> | Enables/Disables the addon. |
+| tb_start_match | Starts the match. |
+| tb_end_match | Forces the match to stop and reset, if one is ongoing. |
 | tb_create_team \<string name> [num red] [num green] [num blue] | Creates a team with the given name (use quotation marks) and color (defaults to a random color) |
 | tb_remove_team \<string name> | Removes the team with the given name, if it exists. |
 | tb_join_team \<string name> | Joins the team with the given name, if it exists. |
 | tb_leave_team \<string name> | Leaves the team with the given name, if it exists. |
 | tb_player_lives \<num lives=1> | Number of lives that a player gets before being considered dead. (Cannot contribute to team score) |
+| tb_win_amount \<num points=250> | Sets the number of points needed for a team to win the match. |
 | tb_kill_points \<num points=25> | Sets the number of points given to a player for killing an enemy. |
 | tb_teamkill_penalty \<num points=25> | Sets the number of points deducted from a player for teamkilling. (0 for none, or negative to reward) |
 | tb_capture_speed_multiplier \<num mul=1.5> | The capture point capture speed multiplier when multiple people of the same team are on one point. |
