@@ -57,7 +57,8 @@ concommand.Add("tb_join_team", function(ply, cmd, args, argStr)
     -- Dumbass
     if args[1] == nil then ply:PrintMessage(HUD_PRINTCONSOLE, "No team name provided\n") return end
 
-    if LocalPlayer().tank_battle_team ~= nil and string.lower(args[1]) == string.lower(LocalPlayer().tank_battle_team.name) then
+    if ply.tank_battle == nil then ply.tank_battle = {} end
+    if LocalPlayer().tank_battle.team ~= nil and string.lower(args[1]) == string.lower(LocalPlayer().tank_battle.team.name) then
         ply:PrintMessage(HUD_PRINTCONSOLE, "You are already on this team\n")
         return
     end
@@ -71,7 +72,8 @@ concommand.Add("tb_leave_team", function(ply, cmd, args, argStr)
     -- Dumbass
     if args[1] == nil then ply:PrintMessage(HUD_PRINTCONSOLE, "No team name provided\n") return end
 
-    if LocalPlayer().tank_battle_team == nil or string.lower(args[1]) ~= string.lower(LocalPlayer().tank_battle_team.name) then
+    if ply.tank_battle == nil then ply.tank_battle = {} end
+    if LocalPlayer().tank_battle.team == nil or string.lower(args[1]) ~= string.lower(LocalPlayer().tank_battle.team.name) then
         ply:PrintMessage(HUD_PRINTCONSOLE, "You are not on this team\n")
         return
     end
@@ -120,12 +122,12 @@ end)
 net.Receive("octo_tank_battle_update_team_cl", function(len, ply)
     local name = net.ReadString()
     local color = net.ReadColor()
-
+    
     if name == "" then
-        LocalPlayer():PrintMessage(HUD_PRINTCONSOLE, "Left team \"" .. LocalPlayer().tank_battle_team.name .. "\"\n")
-        LocalPlayer().tank_battle_team = nil
+        LocalPlayer():PrintMessage(HUD_PRINTCONSOLE, "Left team \"" .. LocalPlayer().tank_battle.team.name .. "\"\n")
+        LocalPlayer().tank_battle.team = nil
     else
         LocalPlayer():PrintMessage(HUD_PRINTCONSOLE, "Joined team \"" .. name .. "\"\n")
-        LocalPlayer().tank_battle_team = {name = name, color = color}
+        LocalPlayer().tank_battle.team = {name = name, color = color}
     end
 end)

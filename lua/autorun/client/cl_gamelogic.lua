@@ -1,22 +1,5 @@
 AddCSLuaFile()
 
-tank_battle = tank_battle or {
-    teams = {},
-    capture_points = {},
-    airdrops = {},
-    playerdata = {},
-}
-
--- Checks if a team with the provided name exists
-tank_battle.teamExists = function(name)
-    for k,v in pairs(tank_battle.teams) do
-        if name == v.name then
-            return true
-        end
-    end
-    return false
-end
-
 -- Read team data from server and load it into the client
 net.Receive("octo_tank_battle_fetch_teams_list_cl", function(ply, len)
     tank_battle.teams = {}

@@ -1,14 +1,3 @@
--- Sends updated team tables to clients
-local function updateTeamsCl(len, ply)
-    net.Start("octo_tank_battle_fetch_teams_list_cl")
-        net.WriteInt(#tank_battle.teams, 5) --No more than 32 teams should be made
-        for k,v in pairs(tank_battle.teams) do
-            net.WriteString(v.name)
-            net.WriteColor(v.color, false)
-        end
-    net.Send(ply)
-end
-
 -- Creates a new team with the given name and color
 net.Receive("octo_tank_battle_create_team", function (len, ply)
     if not ply:IsAdmin() or not ply:IsSuperAdmin() then
@@ -29,7 +18,7 @@ net.Receive("octo_tank_battle_create_team", function (len, ply)
     else
         ply:PrintMessage(HUD_PRINTCONSOLE, "Team \"" .. name .. "\" created with color " .. tostring(color))
     end
-    updateTeamsCl(len, ply)
+    tank_battle.updateTeamsCl(len, ply)
 end)
 
 -- Removes a team with the given name
@@ -46,7 +35,7 @@ net.Receive("octo_tank_battle_remove_team", function (len, ply)
         return
     end
 
-    updateTeamsCl(len, ply)
+    tank_battle.updateTeamsCl(len, ply)
 end)
 
 -- Adds a player to a team
@@ -54,8 +43,8 @@ net.Receive("octo_tank_battle_join_team", function (len, ply)
     local nameLower = net.ReadString()
 
     local result = tank_battle.addPlayerToTeam(ply, nameLower)
-
-    updateTeamsCl(len, ply)
+    tank_battle.addScore(ply, 0)
+    tank_battle.updateTeamsCl(len, ply)
 end)
 
 -- Removes a player to a team
@@ -63,8 +52,8 @@ net.Receive("octo_tank_battle_leave_team", function (len, ply)
     local nameLower = net.ReadString()
 
     local result = tank_battle.removePlayerFromTeam(ply, nameLower)
-
-    updateTeamsCl(len, ply)
+    tank_battle.addScore(ply, 0)
+    tank_battle.updateTeamsCl(len, ply)
 end)
 
 -- Sets the color of the team of the given name
@@ -87,7 +76,7 @@ net.Receive("octo_tank_battle_set_team_color", function (len, ply)
         end
     end
     ply:PrintMessage(HUD_PRINTCONSOLE, "Team \"" .. name .. "\" color set to " .. tostring(color) .. "\n")
-    updateTeamsCl(len, ply)
+    tank_battle.updateTeamsCl(len, ply)
 end)
 
 -- Sends a list of teams to the client
